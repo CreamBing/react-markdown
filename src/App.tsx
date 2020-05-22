@@ -1,24 +1,22 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import  ReactMarkdown from 'react-markdown';
+import testMd from './source/Ant Design Pro 初体验.md'
+import CodeBlock from "./md/CodeBlock";
+import HeadingBlock from "./md/HeadingBlock";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ReactMarkdown
+        source={testMd}
+        escapeHtml={false}
+        renderers={{
+          code: CodeBlock,
+          heading: HeadingBlock
+        }}
+      />
     </div>
   );
 }
