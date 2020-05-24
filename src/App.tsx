@@ -17,10 +17,7 @@ function App() {
   return (
 
     <div className="App">
-      <BrowserRouter>
-        <Route path="/" component={BasicLayout}/>
-        <Route path="/ant" component={AntDemo} />
-      </BrowserRouter>
+      <BasicLayout />
       {/* <ReactMarkdown
         source={testMd}
         escapeHtml={false}
