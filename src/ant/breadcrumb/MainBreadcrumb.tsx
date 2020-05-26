@@ -5,11 +5,9 @@ import { Dispatch } from 'redux';
 import * as actions from './action';
 import routes from '../routes';
 import {Link } from 'react-router-dom';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps,withRouter} from 'react-router';
 
 export interface MainBreadcrumbProps extends RouteComponentProps {
-    path: string;
-    update: any
 }
 
 
@@ -24,13 +22,6 @@ class MainBreadcrumb extends Component<MainBreadcrumbProps, MainBreadcrumbState>
         this.state = { location: '/' };
     }
 
-    hello = (e:any,path:any) => {
-        const {update} = this.props;
-        debugger;
-        console.log(path);
-        update(path);
-      }
-
     componentDidMount(){
       console.log(this.props)  
     }
@@ -39,7 +30,7 @@ class MainBreadcrumb extends Component<MainBreadcrumbProps, MainBreadcrumbState>
 
     render() {
         debugger;
-        const { path } = this.props;
+        const { pathname:path } = this.props.location;
         const {location:lo2} = this.state;
         console.log(lo2+"--"+path);
         let obj = routes.filter((e) => e.path === path).map((e) => {
@@ -53,7 +44,7 @@ class MainBreadcrumb extends Component<MainBreadcrumbProps, MainBreadcrumbState>
         );
         const home = [
             <Breadcrumb.Item key="home">
-                <Link  onClick={(e:any)=>this.hello(e,"/")} to="/">首页</Link>
+                <Link to="/">首页</Link>
             </Breadcrumb.Item>,
         ];
         let breadcrumbItems = home;
@@ -71,16 +62,4 @@ class MainBreadcrumb extends Component<MainBreadcrumbProps, MainBreadcrumbState>
     }
 }
 
-export function mapStateToProps({ location }: MainBreadcrumbState) {
-    return {
-        path:location
-    }
-}
-
-export function mapDispatchToProps(dispatch: Dispatch<actions.ACTION>) {
-    return {
-        update: (path: string) => dispatch(actions.update(path))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainBreadcrumb);
+export default withRouter(MainBreadcrumb);
