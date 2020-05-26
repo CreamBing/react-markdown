@@ -8,8 +8,6 @@ import {Link } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
 
 export interface MainBreadcrumbProps extends RouteComponentProps {
-    path: string;
-    update: any
 }
 
 
@@ -25,10 +23,8 @@ class MainBreadcrumb extends Component<MainBreadcrumbProps, MainBreadcrumbState>
     }
 
     hello = (e:any,path:any) => {
-        const {update} = this.props;
         debugger;
         console.log(path);
-        update(path);
       }
 
     componentDidMount(){
@@ -39,7 +35,7 @@ class MainBreadcrumb extends Component<MainBreadcrumbProps, MainBreadcrumbState>
 
     render() {
         debugger;
-        const { path } = this.props;
+        const { pathname:path } = this.props.location;
         const {location:lo2} = this.state;
         console.log(lo2+"--"+path);
         let obj = routes.filter((e) => e.path === path).map((e) => {
@@ -83,4 +79,4 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.ACTION>) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainBreadcrumb);
+export default MainBreadcrumb;

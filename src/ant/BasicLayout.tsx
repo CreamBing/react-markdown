@@ -5,7 +5,6 @@ import { HashRouter, BrowserRouter, Switch, Route, Link } from 'react-router-dom
 import AntDemo from '../ant/AntDemo';
 import PageOne from '../ant/PageOne';
 import PageTwo from '../ant/PageTwo';
-import MainBreadcrumb from './breadcrumb/MainBreadcrumb';
 import routes from './routes';
 import { createStore } from 'redux';
 import { BreadcrumbReducer } from './breadcrumb/reduce';
@@ -14,8 +13,6 @@ import {update,UPDATEACTION, UPDATE} from './breadcrumb/action';
 
 const { Header, Content, Footer, Sider } = Layout;
 
-let store = createStore(BreadcrumbReducer,{location:'/'});
-
 class BasicLayout extends Component {
   constructor(props: any) {
     super(props);
@@ -23,11 +20,11 @@ class BasicLayout extends Component {
 
   hello = (e:any,path:any) => {
     console.log(path);
-    let update:UPDATEACTION = {type:UPDATE,path:path}
-    store.dispatch(update);
   }
 
   render() {
+    console.log("***"+this.props);
+
     return (
       <BrowserRouter>
         <Layout>
@@ -57,9 +54,6 @@ class BasicLayout extends Component {
           <Layout>
             <Header className="site-layout-sub-header-background" style={{ padding: 0 }} />
             <Content style={{ margin: '24px 16px 0' }}>
-              <Provider store={store}>
-                <MainBreadcrumb></MainBreadcrumb>
-              </Provider>
               <Switch>
                 {routes.map((route, i) => {
                   const { path, exact } = route;
