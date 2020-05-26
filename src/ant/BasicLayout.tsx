@@ -44,13 +44,13 @@ class BasicLayout extends Component {
             <div className="logo" />
             <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
               <Menu.Item key="1" icon={<UserOutlined />}>
-                <Link to="/" onClick={(e:any,path:any)=>this.hello(e,"/")}><span>nav 1</span></Link>
+                <Link to="/" onClick={(e:any)=>this.hello(e,"/")}><span>nav 1</span></Link>
               </Menu.Item>
               <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                <Link to="/one" onClick={(e:any,path:any)=>this.hello(e,'/one')}><span>nav 2</span></Link>
+                <Link to="/one" onClick={(e:any)=>this.hello(e,'/one')}><span>nav 2</span></Link>
               </Menu.Item>
               <Menu.Item key="3" icon={<UploadOutlined />}>
-                <Link to="/two" onClick={(e:any,path:any)=>this.hello(e,'/two')}><span>nav 3</span></Link>
+                <Link to="/two" onClick={(e:any)=>this.hello(e,'/two')}><span>nav 3</span></Link>
               </Menu.Item>
             </Menu>
           </Sider>

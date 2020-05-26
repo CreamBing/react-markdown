@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import * as actions from './action';
 import routes from '../routes';
-import { HashRouter, BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import {Link } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
 
-export interface MainBreadcrumbProps {
-    location: string;
+export interface MainBreadcrumbProps extends RouteComponentProps {
+    path: string;
     update: any
 }
 
@@ -29,15 +30,19 @@ class MainBreadcrumb extends Component<MainBreadcrumbProps, MainBreadcrumbState>
         console.log(path);
         update(path);
       }
+
+    componentDidMount(){
+      console.log(this.props)  
+    }
     
 
 
     render() {
         debugger;
-        const { location } = this.props;
+        const { path } = this.props;
         const {location:lo2} = this.state;
-        console.log(lo2+"--"+location);
-        let obj = routes.filter((e) => e.path === location).map((e) => {
+        console.log(lo2+"--"+path);
+        let obj = routes.filter((e) => e.path === path).map((e) => {
             const path = e.path;
             return (
                 <Breadcrumb.Item key={e.path}>
@@ -48,12 +53,12 @@ class MainBreadcrumb extends Component<MainBreadcrumbProps, MainBreadcrumbState>
         );
         const home = [
             <Breadcrumb.Item key="home">
-                <Link  onClick={(e:any,path:any)=>this.hello(e,"/")} to="/">首页</Link>
+                <Link  onClick={(e:any)=>this.hello(e,"/")} to="/">首页</Link>
             </Breadcrumb.Item>,
         ];
         let breadcrumbItems = home;
         debugger;
-        if (location != '/') {
+        if (path != '/') {
             breadcrumbItems = breadcrumbItems.concat(obj);
         } else {
             breadcrumbItems = home;
@@ -68,7 +73,7 @@ class MainBreadcrumb extends Component<MainBreadcrumbProps, MainBreadcrumbState>
 
 export function mapStateToProps({ location }: MainBreadcrumbState) {
     return {
-        location
+        path:location
     }
 }
 
