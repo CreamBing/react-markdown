@@ -2,6 +2,8 @@ import AntDemo from './AntDemo';
 import PageOne from './PageOne';
 import PageTwo from './PageTwo';
 import PageThree from './PageThree';
+import Aritcles from './Aritcles';
+import PageTwoRoute from './PageTwoRoute';
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 
 const routes = [
@@ -20,9 +22,24 @@ const routes = [
     },
     {
       path: '/two',
-      component: PageTwo,
+      component: PageTwoRoute,
       icon: UploadOutlined,
       breadcrumbName: '朋友',
+      routes: [
+        {
+          path: '/two',
+          component: PageTwo,
+          exact: true,
+          icon: UploadOutlined,
+          breadcrumbName: '',
+        },
+        {
+          path: '/two/:id',
+          component: Aritcles,
+          icon: UploadOutlined,
+          breadcrumbName: '',
+        }
+      ]
     },
     {
       path: '/three',

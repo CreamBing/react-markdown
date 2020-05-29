@@ -31,7 +31,7 @@ class BasicLayout extends Component {
                 <MainBreadcrumb></MainBreadcrumb>
               <Switch>
                 {routes.map((route, i) => {
-                  const { path, exact } = route;
+                  const { path, exact ,routes} = route;
                   return (
                     <Route
                       key={i}
