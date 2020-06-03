@@ -42,7 +42,8 @@ export default class Aritcles extends Component<AritclesProps, AritclesState>{
     componentWillMount() {
         // Get the contents from the Markdown file and put them in the React state, so we can reference it in render() below.
         const { id } = this.props.match.params;
-        const source = require('../source/' + id + '.md');
+        const path = "回溯与递归";
+        const source = require(`E:/DEV/front/blog/githubio/hexo-source/hexo/source/_posts/${path}.md`);
         this.setState({ sourceMarkDown: source.default });
         //这里应该是有了markdown得loader就不需要这样了
         // fetch(source).then(res => res.text()).then(text => this.setState({ sourceMarkDown: text }));
